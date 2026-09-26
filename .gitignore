@@ -6,3 +6,4 @@ datos/*.csv
 .vercel/
 .claude/
 .vercel
+.env*.local

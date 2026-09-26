@@ -58,12 +58,12 @@ npm run dev                           # http://localhost:3005
 ## Cargar el dataset en la nube
 
 1. Desconectar Proton VPN (bloquea las conexiones a Neon).
-2. Traer la cadena de conexión del proyecto: `vercel env pull .env.local`.
-3. Cargar:
+2. Traer las variables del proyecto: `vercel env pull .env.local` (queda fuera de git).
+3. Cargar con la conexión directa, sin pooler, que es la adecuada para una transacción con
+   cambios de esquema:
 
    ```powershell
-   $env:DATABASE_URL = (Get-Content .env.local | Select-String '^DATABASE_URL=').Line.Split('=',2)[1].Trim('"')
-   npm run cargar
+   node --env-file=.env.local --input-type=module -e "process.env.DATABASE_URL = process.env.DATABASE_URL_UNPOOLED; await import('./scripts/cargar-dataset.mjs');"
    ```
 
    La salida termina con `OK: la base tiene el 100 % de las filas de la fuente (1122 de 1122).`
