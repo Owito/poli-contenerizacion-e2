@@ -1,0 +1,19 @@
+{
+  "name": "municipios-serverless",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Carga de DIVIPOLA a PostgreSQL en la nube y consulta con funciones serverless",
+  "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "db:local": "docker compose up -d --wait",
+    "cargar": "node scripts/cargar-dataset.mjs",
+    "dev": "node scripts/servidor-local.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "dependencies": {
+    "pg": "^8.23.0"
+  }
+}

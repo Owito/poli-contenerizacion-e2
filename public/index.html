@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Municipios de Colombia · consulta serverless</title>
+  <meta name="description" content="Consulta de la división político-administrativa de Colombia (DIVIPOLA) cargada en una base de datos en la nube y servida con funciones serverless.">
+  <link rel="icon" href="icono.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#resultados">Saltar a los resultados</a>
+
+  <header class="cabecera">
+    <div class="contenedor">
+      <p class="antetitulo">DIVIPOLA · datos.gov.co</p>
+      <h1>Municipios de Colombia</h1>
+      <p class="bajada">El dataset completo vive en una base PostgreSQL en la nube. Cada consulta de esta página ejecuta una función bajo demanda: no hay un servidor propio encendido.</p>
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section aria-labelledby="t-resumen">
+      <h2 id="t-resumen" class="visualmente-oculto">Resumen de la base</h2>
+      <dl class="tarjetas" id="resumen" aria-busy="true">
+        <div class="tarjeta"><dt>Departamentos</dt><dd data-campo="departamentos">…</dd></div>
+        <div class="tarjeta"><dt>Municipios y áreas</dt><dd data-campo="municipios">…</dd></div>
+        <div class="tarjeta tarjeta--ancha"><dt>Última carga</dt><dd data-campo="carga">…</dd></div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="t-buscar" class="panel">
+      <h2 id="t-buscar">Buscar</h2>
+      <form id="filtros" class="filtros" role="search">
+        <div class="campo">
+          <label for="q">Nombre</label>
+          <input id="q" name="q" type="search" maxlength="60" autocomplete="off" placeholder="Ej.: bogota, san andres">
+        </div>
+        <div class="campo">
+          <label for="departamento">Departamento</label>
+          <select id="departamento" name="departamento">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="tipo">Tipo</label>
+          <select id="tipo" name="tipo">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <button type="submit" class="boton">Buscar</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="t-resultados" class="panel" id="resultados" tabindex="-1">
+      <div class="panel__cabecera">
+        <h2 id="t-resultados">Resultados</h2>
+        <p id="estado" class="estado" role="status" aria-live="polite">Cargando…</p>
+      </div>
+      <div class="tabla-envoltura" tabindex="0" aria-label="Tabla de municipios, se desplaza horizontalmente en pantallas pequeñas">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Código</th>
+              <th scope="col">Municipio</th>
+              <th scope="col">Departamento</th>
+              <th scope="col">Tipo</th>
+              <th scope="col" class="num">Latitud</th>
+              <th scope="col" class="num">Longitud</th>
+            </tr>
+          </thead>
+          <tbody id="filas"></tbody>
+        </table>
+      </div>
+      <nav class="paginacion" aria-label="Paginación">
+        <button type="button" class="boton boton--secundario" id="anterior">Anterior</button>
+        <span id="pagina" aria-live="polite"></span>
+        <button type="button" class="boton boton--secundario" id="siguiente">Siguiente</button>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="pie contenedor">
+    <p>Fuente: DIVIPOLA, códigos de municipios, publicado en <a href="https://www.datos.gov.co/d/gdxc-w37w">datos.gov.co</a>. Trabajo académico, Contenerización de Aplicaciones de Software, Politécnico Grancolombiano.</p>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
