@@ -15,7 +15,7 @@ C = restricción.
 | FR-06 | `GET /api/salud` responde sin consultar la base. | Despliegue serverless |
 | FR-07 | `GET /api/resumen` devuelve los conteos de la base (departamentos, municipios por tipo) y la última carga. | Despliegue: la app muestra lo cargado |
 | FR-08 | `GET /api/departamentos` lista los departamentos con su número de municipios. | Despliegue serverless |
-| FR-09 | `GET /api/municipios` busca municipios por nombre, departamento y tipo, con paginación. | Despliegue serverless |
+| FR-09 | `GET /api/municipios` busca municipios por nombre o por código (ID principal, no repetido), departamento y tipo, con paginación. | Despliegue serverless |
 | FR-10 | La interfaz web muestra el resumen, un filtro por departamento, la búsqueda y la tabla de resultados. | Despliegue: aplicación web |
 
 ## No funcionales

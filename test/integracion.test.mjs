@@ -54,6 +54,13 @@ describe('integración con PostgreSQL local', { skip: !esLocal && 'DATABASE_URL 
     assert.ok(cuerpo.resultados.some((m) => m.codigo === '05001'));
   });
 
+  test('UC-002 búsqueda por código devuelve un único municipio (11001)', async () => {
+    const { status, cuerpo } = await get('municipios', '?q=11001');
+    assert.equal(status, 200);
+    assert.equal(cuerpo.total, 1);
+    assert.equal(cuerpo.resultados[0].codigo, '11001');
+  });
+
   test('UC-002 filtro por departamento: todos del 05 y total coherente', async () => {
     const { cuerpo } = await get('municipios', '?departamento=05&por_pagina=200');
     assert.ok(cuerpo.total > 0);
