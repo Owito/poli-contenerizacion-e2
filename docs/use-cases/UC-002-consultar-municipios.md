@@ -7,7 +7,7 @@
 
 1. El usuario abre la aplicación. La página estática se sirve desde la red de distribución.
 2. La página llama a `/api/resumen` y `/api/departamentos`; cada llamada ejecuta una función.
-3. El usuario elige un departamento, un tipo o escribe parte de un nombre.
+3. El usuario elige un departamento, un tipo o escribe parte de un nombre o el código del municipio.
 4. La página llama a `/api/municipios?q=&departamento=&tipo=&pagina=` y pinta la tabla.
 
 ## Flujos alternos
@@ -23,6 +23,11 @@ Escenario: búsqueda por nombre
   Dado el dataset cargado
   Cuando consulto /api/municipios?q=medell
   Entonces la respuesta incluye el municipio con código 05001
+
+Escenario: búsqueda por código
+  Dado el dataset cargado
+  Cuando consulto /api/municipios?q=11001
+  Entonces la respuesta tiene un solo resultado, con código 11001
 
 Escenario: filtro por departamento
   Cuando consulto /api/municipios?departamento=05&por_pagina=200
